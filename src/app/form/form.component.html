@@ -12,7 +12,7 @@
                         <input type="text" formControlName="firstname" id="form6Example1"
                             class="form-control" />
                             <span class="text-danger" *ngIf="empform.get('firstname')?.hasError('required') && (empform.get('firstname')?.dirty || empform.get('firstname')?.touched)">This field is required</span>
-                             <span class="text-danger" *ngIf="empform.get('firstname')?.hasError('pattern') && (empform.get('firstname')?.dirty || empform.get('firstname')?.touched)">This field is required </span>
+                             <span class="text-danger" *ngIf="empform.get('firstname')?.hasError('pattern') && (empform.get('firstname')?.dirty || empform.get('firstname')?.touched)">Should not contain number</span>
 
                         </div>
                 </div>
@@ -22,7 +22,7 @@
                         <input type="text" formControlName="lastname"  id="form6Example2"
                             class="form-control "  />
                             <span class="text-danger" *ngIf="empform.get('lastname')?.hasError('required') && (empform.get('lastname')?.dirty || empform.get('lastname')?.touched)">This field is required</span> 
-                            <span class="text-danger" *ngIf="empform.get('lastname')?.hasError('pattern') && (empform.get('lastname')?.dirty || empform.get('lastname')?.touched)">This field is required</span>
+                            <span class="text-danger" *ngIf="empform.get('lastname')?.hasError('pattern') && (empform.get('lastname')?.dirty || empform.get('lastname')?.touched)">Should not contain number</span>
                     </div>
                 </div>
             </div>
