@@ -1,0 +1,135 @@
+<div class="employeeDetails">
+    <div class="container">
+        <div class="head text-center p-2">
+            <h1>Employee Details</h1>
+        </div>
+        <form [formGroup]="empform" class="form" (ngSubmit)="onSubmit(empform)" style="border: 1px solid grey; background: paleturquoise;">
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+                <div class="col m-1">
+                    <div class="form-outline">
+                        <label class="form-label " for="form6Example1">First name</label>
+                        <input type="text" formControlName="firstname" id="form6Example1"
+                            class="form-control" />
+                            <span class="text-danger" *ngIf="empform.get('firstname')?.hasError('required') && (empform.get('firstname')?.dirty || empform.get('firstname')?.touched)">This field is required</span>
+                             <span class="text-danger" *ngIf="empform.get('firstname')?.hasError('pattern') && (empform.get('firstname')?.dirty || empform.get('firstname')?.touched)">This field is required </span>
+
+                        </div>
+                </div>
+                <div class="col m-1">
+                    <div class="form-outline">
+                        <label class="form-label" for="form6Example2">Last name</label>
+                        <input type="text" formControlName="lastname"  id="form6Example2"
+                            class="form-control "  />
+                            <span class="text-danger" *ngIf="empform.get('lastname')?.hasError('required') && (empform.get('lastname')?.dirty || empform.get('lastname')?.touched)">This field is required</span> 
+                            <span class="text-danger" *ngIf="empform.get('lastname')?.hasError('pattern') && (empform.get('lastname')?.dirty || empform.get('lastname')?.touched)">This field is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example3">Age</label>
+                <input type="number" formControlName="age" id="form6Example3" class="form-control"  />
+                <span class="getError" *ngIf="f['age']?.invalid && f['age']?.touched">This field is required</span>
+            </div>
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example4">Address</label>
+                <input type="text" formControlName="address" maxlength="50" id="form6Example4" class="form-control" />
+                <span class="getError" *ngIf="f['address']?.invalid && f['address']?.touched">This field is required</span>
+            </div>
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example11">Education</label>
+                <input type="text" formControlName="education" id="form6Example11" class="form-control" />
+                <span class="getError" *ngIf="f['education']?.invalid && f['education']?.touched">This field is required</span>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example5">Email</label>
+                <input type="email" formControlName="email" minlength="17"
+                  id="form6Example5" class="form-control" />
+                    <span class="text-danger" *ngIf="empform.get('email')?.hasError('required') && (empform.get('email')?.dirty || empform.get('email')?.touched)">This field is required</span> 
+                    <span class="text-danger" *ngIf="empform.get('email')?.hasError('pattern') && (empform.get('email')?.dirty || empform.get('email')?.touched)">Should have uppercase,lowercase, number, symbol, minimum 17 characters </span>
+            </div>
+
+            <!-- password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example12">Password</label>
+                <input type="password" formControlName="password"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" maxlength="15"
+                    id="form6Example12" class="form-control" />
+                    <span class="getError" *ngIf="f['password']?.invalid && f['password']?.touched">This field is required</span>
+            </div>
+
+            <!-- password confirm input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example13">Confirm Password</label>
+                <input type="password" formControlName="confirmpassword" id="form6Example13" class="form-control" />
+                <label class="text-danger" *ngIf="empform.get('confirmpassword')?.hasError('required') && (empform.get('confirmpassword')?.dirty || empform.get('confirmpassword')?.touched)">This field is required</label> 
+                <label class="text-danger" *ngIf="empform.get('confirmpassword')?.hasError('misMatch') && (empform.get('confirmpassword')?.dirty || empform.get('confirmpassword')?.touched)">Password mismatch </label>
+            </div> 
+                
+            <!-- Number input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example6">Phone</label>
+                <input type="number" formControlName="phone" maxlength="10" id="form6Example6" class="form-control" />
+                <span class="getError" *ngIf="f['phone']?.invalid && f['phone']?.touched">This field is required</span>
+                <span class="getError" *ngIf="f['phone']?.getError('maxlength')">Should contain 10 digits</span>
+            </div>
+
+            <!-- Country, state, pin -->
+
+            <div class="row">
+                <div class="col-4">
+                  <label class="form-label" for="form6Example8">Country</label>
+                  <select class="select" formControlName="country" (change)="onSelected(empform.value.country)">
+                    <ng-container *ngFor="let item of countryData; let i=index">
+                        <option value="{{i}}">{{item}}</option>
+                    </ng-container>
+                  </select>
+                  <span class="getError" *ngIf="f['country']?.invalid && f['country']?.touched"></span>
+                </div>
+
+                <div class="col-4 ">
+                  <label class="form-label" for="form6Example4">State</label>
+                  <select class="select" formControlName="state" name="state" id="state">
+                    <ng-container *ngFor="let item of states; let i=index">
+                        <option value="{{i}}">{{item}}</option>
+                    </ng-container>
+                </select>
+                <span class="getError" *ngIf="f['state']?.invalid && f['state']?.touched"></span>
+                </div>
+
+                <div class="col-2 ">
+                  <label class="form-label" for="form6Example4">Pin</label>
+                  <input type="number"  formControlName="pin" name="pin" id="pin" maxlength="6">
+                  <span class="getError" *ngIf="f['pin']?.invalid && f['pin']?.touched">This field is reqired</span>
+                  <span class="getError" *ngIf="f['pin']?.getError('maxlength')!=null">Needs atleast 6 digits</span>
+                </div>
+              </div>
+
+            <!-- Message input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example7">Message</label>
+                <textarea class="form-control" formControlName="message" maxlength="15" id="form6Example7"
+                    rows="4"></textarea>
+                <span class="getError" *ngIf="f['message']?.invalid && f['message']?.touched">This field is required</span>
+            </div>
+
+
+
+            <!-- Submit button -->
+            <div class="button text-center">
+
+                <!-- Save button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4 p-2">Save</button>
+            </div>
+        </form>
+
+    </div>
+</div>

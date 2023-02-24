@@ -1,0 +1,10 @@
+@import '../assets/scss/variables.scss';
+@import '../assets/scss/mixins.scss';
+@import '../assets/scss/base.scss';
+
+.navbar-nav{
+    
+    .nav-link.active, .navbar-nav.show.nav-link {
+        color: #7fffd4;
+    }
+}
