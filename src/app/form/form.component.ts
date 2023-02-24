@@ -122,18 +122,6 @@ export class FormComponent implements OnInit{
 
     }
 
-    // console.log('FirstName', form.value.firstname);
-    // console.log('LastName', form.value.lastname);
-    // console.log('Age', form.value.age);
-    // console.log('Phone', form.value.Phone);
-    // console.log('Address', form.value.address);
-    // console.log('Education', form.value.education);
-    // console.log('Email', form.value.email);
-    // console.log('Password', form.value.password);
-    // console.log('Confirm Password', form.value.confirmpassword);
-    // console.log('Country', form.value.country);
-    // console.log('State', form.value.state);
-    // console.log('Pin', form.value.pin);
-    // console.log('Message', form.value.message);
+    
   }
 }
